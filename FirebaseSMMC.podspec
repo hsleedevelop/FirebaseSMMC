@@ -24,7 +24,9 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "Firebase Crash for SMMC."
+  s.description      = <<-DESC
+  Firebase Crash for SMMC.
+                       DESC
 
   s.homepage     = "https://firebase.google.com/docs/crash/"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -38,7 +40,8 @@ Pod::Spec.new do |s|
   #
 
   #s.license      = "MIT"
-  s.license      = { :type => "MIT", :file => "LICENSE" }
+  s.license      = { :type => 'MIT' }
+  #s.license      = { :type => "Copyright", :TEXT => "Copyright 2017 Google" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -63,7 +66,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -78,8 +81,8 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/jasonleedevelop/FirebaseSMMC.git", :tag => "#{s.version}" }
-
+  #s.source       = { :http => "https://github.com/jasonleedevelop/FirebaseSMMC.git", :tag => "#{s.version}" }
+  s.source    = { :http => 'https://github.com/jasonleedevelop/FirebaseSMMC/releases/download/1.1.6/FirebaseCrashSMMC-1.1.6.tar.gz' }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -93,7 +96,7 @@ Pod::Spec.new do |s|
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
-
+  s.vendored_frameworks = "Frameworks/FirebaseCrash.framework"
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -104,10 +107,9 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  s.resources = "*.tar.gz"
+  #s.resources = "*.tar.gz"
 
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
+  s.preserve_paths = "README.md", "batch-upload", "dump_syms", "extract-keys", "upload-sym", "upload-sym-util.bash"
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -117,9 +119,9 @@ Pod::Spec.new do |s|
 
   # s.framework  = "SomeFramework"
   # s.frameworks = "SomeFramework", "AnotherFramework"
-
+  s.frameworks = "CoreTelephony", "SystemConfiguration"
   # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
+  s.libraries = "c++"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -131,6 +133,10 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "FirebaseAnalytics", "~> 3.7"
+  s.dependency "FirebaseInstanceID", "~> 1.0"
+  s.dependency "GoogleToolboxForMac/Logger", "~> 2.1"
+  s.dependency "GoogleToolboxForMac/NSData+zlib", "~> 2.1"
+  s.dependency "Protobuf", "~> 3.1"
 
 end
