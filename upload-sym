@@ -292,4 +292,4 @@ for ARCH in ${ARCHS?:}; do
     fi
 
     fcr_upload_files "${!SYMBOL_FILE}" || exit 1
-done
+done 
